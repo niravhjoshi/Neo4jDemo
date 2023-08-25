@@ -36,3 +36,25 @@ Warning: Folder mounted to "/data/transactions" is not writable from inside cont
      [[/image/bankDBRelationShip.ejpgxt|ALT TEXT]]
   3. Here is Graph Model derived for Bankdata in arrows App.
     https://drive.google.com/file/d/1R6jbv7EBePvmqsjAPNV0lD0xkZfv7xnr/view?usp=sharing
+- Write a graph-enabled application using JavaScript / Python / Go / .Net / Java to ingest data based on the data model.
+  1. Please find file name Neo4JDataLoad.ipynb which has python code to ingest data for sng_education.
+   
+ - Write some exploratory Cypher queries to look at some patterns. 
+    
+    `   
+	MATCH (w:Work),(tr:Trips)
+	where w.passportnumber = tr.passportnumber
+	CREATE (w) -[r:Perform_Trips]-> (tr)
+	return w,tr,r
+
+
+	MATCH (w:Work),(ed:Education)
+	where w.passportnumber = ed.passportnumber
+	CREATE (w) -[r:had_study_in] ->(ed)
+	return w,ed,r
+
+	MATCH (w:Work),(tr:Transaction)
+	where w.passportnumber = tr.passportnumber
+	CREATE (w) -[r:has_performed_transaction] ->(tr)
+	return w,tr,r
+`
